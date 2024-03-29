@@ -1,0 +1,123 @@
+﻿@using MyBlog.Entity.DTO.EducationDTO
+@using MyBlog.Entity.Result
+@model UIResponse<IEnumerable<EducationGetDTO>>
+
+@{
+    ViewData["Title"] = "Education";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    // Örnek bir DateTime nesnesi oluşturuluyor
+    
+    // // DateTime nesnesini bir tarih formatına çevirme
+    // string formattedDate = startingDate.ToString("yyyy-MM-dd");
+    // string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
+    // mode
+}
+
+<div class="bg-secondary rounded h-100 p-4">
+    <h6 class="mb-4">Eğitimlerim</h6>
+    <button type="button" class="btn btn-outline-success m-2 float-end" id="ekle" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ekle</button>
+    <!-- Button trigger modal -->
+
+    <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <form id="form">
+                    <div class="modal-header bg-secondary">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+
+                    <div class=" bg-secondary modal-body">
+                        <input hidden name="Id" type="text" class="form-control" id="Id20">
+                        <div class="form-floating mb-3 d-flex justify-content-center">
+                            <img style="height:150px; width:150px; border-radius:50%;" src="" id="Photo21" alt="Profil Resmi">
+                            <input autocomplete="off" name="Image" type="text" class="form-control" id="Photo20" hidden="hidden">
+
+                        </div>
+                        <input autocomplete="off" name="Image" type="text" class="form-control" id="Image" hidden="hidden">
+                        <div class="mb-3">
+                            <input name="Photo" class="form-control bg-dark" id="FormFile" type="file" value="">
+                            <label for="formFileSm" class="form-label">Profil Resmi Seç</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Degree" type="text" class="form-control" id="Degree" placeholder="Derece" required>
+                            <label for="floatingInput">Derece</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="SchoolName" type="text" class="form-control" id="SchoolName" placeholder="Okul Adı" required>
+                            <label for="floatingInput">Okul Adı</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Faculty" type="text" class="form-control" id="Faculty" placeholder="Fakülte" required>
+                            <label for="floatingInput">Fakülte</label>
+                        </div>
+                            <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Section" type="text" class="form-control" id="Section" placeholder="Bölüm" required>
+                            <label for="floatingInput">Bölüm</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Score" type="text" class="form-control" id="Score" placeholder="Puan" required>
+                            <label for="floatingInput">Puan</label>
+                        </div>
+                            <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Description" type="text" class="form-control" id="Description" placeholder="Açıklama" required>
+                            <label for="floatingInput">Açıklama</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="StartingDate" type="text" class="form-control" id="StartingDate" placeholder="Başlangıç Tarihi" required>
+                            <label for="floatingInput">Başlangıç Tarihi</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="EndingDate" type="text" class="form-control" id="EndingDate" placeholder="Bitiş Tarihi" required>
+                            <label for="floatingInput">Bitiş Tarihi</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-secondary">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">İptal</button>
+                        <button type="submit" id="update" class="btn btn-outline-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th class=" col-md-3"></th>
+                <th class="col-md-3 p-3">Okul Adı</th>
+                <th class="col-md-3 p-3">Bölüm</th>
+                <th class="col-md-3 p-3">Bitiş Tarihi</th>
+
+                <th class="col-md-4"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Update Modal-->
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td class="p-2"><img width="30" height="30" src="/images/@item.Photo" /></td>
+                    <td class="p-2">@item.SchoolName</td>
+                    <td class="p-2">@item.Section</td>
+                    @{
+                        DateTime startingDate = item.StartingDate;
+                        DateTime endingDate = item.EndingDate;
+
+                        string formattedDate = startingDate.ToString("dd-MMMM-yyyy");
+                        string formattedDate2 = endingDate.ToString("dd-MMMM-yyyy");
+                    }
+                    <td class="p-2">@formattedDate2</td>
+                    
+                    <td class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.Degree','@item.SchoolName','@item.Faculty','@item.Section','@item.Score','@item.Description','@formattedDate','@formattedDate2')">Güncelle</button>
+                        <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script src="~/js/Education.js" asp-append-version="true"></script>

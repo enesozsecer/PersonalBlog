@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="tr">
+@await Html.PartialAsync("Head")
+
+<body id="top">
+
+	@await Component.InvokeAsync("Intro")
+	@await Component.InvokeAsync("About")
+	@await Component.InvokeAsync("Education")
+	@await Component.InvokeAsync("Portfolio")
+	@await Html.PartialAsync("Contact")
+	<div id="preloader">
+		<div id="loader"></div>
+	</div>
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+	<script src="~/js/contact.js" asp-append-version="true"></script>
+
+</body>
+
+</html>
