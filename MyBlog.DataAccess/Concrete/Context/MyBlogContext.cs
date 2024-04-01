@@ -17,6 +17,7 @@ namespace MyBlog.DataAccess.Concrete.Context
 		}
 		public virtual DbSet<About> About { get; set; }
 		public virtual DbSet<Contact> Contact { get; set; }
+		public virtual DbSet<Work> Work { get; set; }
 		public virtual DbSet<Education> Education { get; set; }
 		public virtual DbSet<Portfolio> Portfolio { get; set; }
 		public virtual DbSet<Skills> Skills { get; set; }

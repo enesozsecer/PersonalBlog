@@ -1,12 +1,12 @@
-﻿@using MyBlog.Entity.DTO.EducationDTO
+﻿@using MyBlog.Entity.DTO.WorkDTO
 @using MyBlog.Entity.Result
-@model UIResponse<IEnumerable<EducationGetDTO>>
+@model UIResponse<IEnumerable<WorkGetDTO>>
 
 @{
-    ViewData["Title"] = "Education";
+    ViewData["Title"] = "Work";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     // Örnek bir DateTime nesnesi oluşturuluyor
-    
+
     // // DateTime nesnesini bir tarih formatına çevirme
     // string formattedDate = startingDate.ToString("yyyy-MM-dd");
     // string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
@@ -28,10 +28,10 @@
                     </div>
 
                     <div class=" bg-secondary modal-body">
-                        <input hidden name="Id" type="text" class="form-control" id="IdEducation">
+                        <input hidden name="Id" type="text" class="form-control" id="IdWork">
                         <div class="form-floating mb-3 d-flex justify-content-center">
-                            <img style="height:150px; width:150px; border-radius:50%;" src="" id="Photo21" alt="Profil Resmi">
-                            <input autocomplete="off" name="Image" type="text" class="form-control" id="PhotoEducation" hidden="hidden">
+                            <img style="height:150px; width:150px; border-radius:50%;" src="" id="Photo11" alt="Profil Resmi">
+                            <input autocomplete="off" name="Image" type="text" class="form-control" id="PhotoWork" hidden="hidden">
 
                         </div>
                         <input autocomplete="off" name="Image" type="text" class="form-control" id="Image" hidden="hidden">
@@ -40,26 +40,18 @@
                             <label for="formFileSm" class="form-label">Profil Resmi Seç</label>
                         </div>
                         <div class="form-floating mb-3 ">
-                            <input autocomplete="off" name="Degree" type="text" class="form-control" id="Degree" placeholder="Derece" required>
-                            <label for="floatingInput">Derece</label>
+                            <input autocomplete="off" name="CompanyName" type="text" class="form-control" id="CompanyName" placeholder="İş Yeri Adı" required>
+                            <label for="floatingInput">İş Yeri Adı</label>
                         </div>
                         <div class="form-floating mb-3 ">
-                            <input autocomplete="off" name="SchoolName" type="text" class="form-control" id="SchoolName" placeholder="Okul Adı" required>
-                            <label for="floatingInput">Okul Adı</label>
+                            <input autocomplete="off" name="Title" type="text" class="form-control" id="Title" placeholder="Ünvan" required>
+                            <label for="floatingInput">Ünvan</label>
                         </div>
                         <div class="form-floating mb-3 ">
-                            <input autocomplete="off" name="Faculty" type="text" class="form-control" id="Faculty" placeholder="Fakülte" required>
-                            <label for="floatingInput">Fakülte</label>
-                        </div>
-                            <div class="form-floating mb-3 ">
-                            <input autocomplete="off" name="Section" type="text" class="form-control" id="Section" placeholder="Bölüm" required>
-                            <label for="floatingInput">Bölüm</label>
+                            <input autocomplete="off" name="Experience" type="text" class="form-control" id="Experience" placeholder="Tecrübe" required>
+                            <label for="floatingInput">Tecrübe</label>
                         </div>
                         <div class="form-floating mb-3 ">
-                            <input autocomplete="off" name="Score" type="text" class="form-control" id="Score" placeholder="Puan" required>
-                            <label for="floatingInput">Puan</label>
-                        </div>
-                            <div class="form-floating mb-3 ">
                             <input autocomplete="off" name="Description" type="text" class="form-control" id="Description" placeholder="Açıklama" required>
                             <label for="floatingInput">Açıklama</label>
                         </div>
@@ -80,13 +72,13 @@
             </div>
         </div>
     </div>
-    
+
     <table class="table">
         <thead>
             <tr>
                 <th class=" col-md-3"></th>
-                <th class="col-md-3 p-3">Okul Adı</th>
-                <th class="col-md-3 p-3">Bölüm</th>
+                <th class="col-md-3 p-3">İş Yeri Adı</th>
+                <th class="col-md-3 p-3">Ünvan</th>
                 <th class="col-md-3 p-3">Bitiş Tarihi</th>
 
                 <th class="col-md-4"></th>
@@ -98,8 +90,8 @@
             {
                 <tr>
                     <td class="p-2"><img width="30" height="30" src="/images/@item.Photo" /></td>
-                    <td class="p-2">@item.SchoolName</td>
-                    <td class="p-2">@item.Section</td>
+                    <td class="p-2">@item.CompanyName</td>
+                    <td class="p-2">@item.Title</td>
                     @{
                         DateTime startingDate = item.StartingDate;
                         DateTime endingDate = item.EndingDate;
@@ -108,9 +100,9 @@
                         string formattedDate2 = endingDate.ToString("dd-MMMM-yyyy");
                     }
                     <td class="p-2">@formattedDate2</td>
-                    
+
                     <td class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.Degree','@item.SchoolName','@item.Faculty','@item.Section','@item.Score','@item.Description','@formattedDate','@formattedDate2')">Güncelle</button>
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Experience','@item.Description','@formattedDate','@formattedDate2')">Güncelle</button>
                         <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
                     </td>
                 </tr>
@@ -120,4 +112,4 @@
 
 </div>
 
-<script src="~/js/Education.js" asp-append-version="true"></script>
+<script src="~/js/Work.js" asp-append-version="true"></script>

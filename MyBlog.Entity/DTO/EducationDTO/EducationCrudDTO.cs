@@ -9,7 +9,7 @@ namespace MyBlog.Entity.DTO.EducationDTO
     public class EducationCrudDTO
     {
         public int Id { get; set; }
-        public int Score { get; set; }
+        public string Score { get; set; }
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
         public string SchoolName { get; set; }

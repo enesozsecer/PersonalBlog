@@ -1,33 +1,29 @@
 ﻿
 var baslik = "";
 $("#ekle").click(function (e) {
-    $("#IdEducation").val("");
-    $("#PhotoEducation").val("");
-    $("#Degree").val("");
-    $("#SchoolName").val("");
-    $("#Faculty").val("");
-    $("#Section").val("");
-    $("#Score").val("");
+    $("#IdWork").val("");
+    $("#PhotoWork").val("");
+    $("#CompanyName").val("");
+    $("#Title").val("");
+    $("#Experience").val("");
     $("#Description").val("");
     $("#StartingDate").val("");
     $("#EndingDate").val("");
-    
-    var baslik = "Eğitim Bilgisi Ekle";
+
+    var baslik = "İş Bilgisi Ekle";
 
     $("#staticBackdropLabel").text(baslik);
 
     $('#staticBackdropUpdate').modal("show");
 });
-function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Description, StartingDate, EndingDate) {
-    $("#IdEducation").val(Id);
+function Update(Id, Photo, CompanyName, Title, Experience, Description, StartingDate, EndingDate) {
+    $("#IdWork").val(Id);
     var fullImagePath = '/images/' + Photo;
-    $("#Photo21").attr("src", fullImagePath);
-    $("#PhotoEducation").val(Photo);
-    $("#Degree").val(Degree);
-    $("#SchoolName").val(SchoolName);
-    $("#Faculty").val(Faculty);
-    $("#Section").val(Section);
-    $("#Score").val(Score);
+    $("#Photo11").attr("src", fullImagePath);
+    $("#PhotoWork").val(Photo);
+    $("#CompanyName").val(CompanyName);
+    $("#Title").val(Title);
+    $("#Experience").val(Experience);
     $("#Description").val(Description);
     $("#StartingDate").val(StartingDate);
     $("#EndingDate").val(EndingDate);
@@ -59,13 +55,11 @@ $("#update").click(function (e) {
         var formData = new FormData();
 
         // Form alanlarını FormData'ya ekle
-        formData.append("Id", $("#IdEducation").val());
-        formData.append("Photo", $("#PhotoEducation").val());
-        formData.append("Degree", $("#Degree").val());
-        formData.append("SchoolName", $("#SchoolName").val());
-        formData.append("Faculty", $("#Faculty").val());
-        formData.append("Section", $("#Section").val());
-        formData.append("Score", $("#Score").val());
+        formData.append("Id", $("#IdWork").val());
+        formData.append("Photo", $("#PhotoWork").val());
+        formData.append("CompanyName", $("#CompanyName").val());
+        formData.append("Title", $("#Title").val());
+        formData.append("Experience", $("#Experience").val());
         formData.append("Description", $("#Description").val());
         formData.append("StartingDate", $("#StartingDate").val());
         formData.append("EndingDate", $("#EndingDate").val());
@@ -74,7 +68,7 @@ $("#update").click(function (e) {
 
         $.ajax({
             type: "POST",
-            url: "/CrudEducation",
+            url: "/CrudWork",
             data: formData,
             processData: false,  // processData ve contentType false olmalı
             contentType: false,
@@ -119,7 +113,7 @@ function confirmDelete(id) {
             $.ajax({
                 type: "POST",
                 data: { id: id },
-                url: "/DeleteEducation",
+                url: "/DeleteWork",
                 success: function (response) {
                     // Başarılı bir şekilde silindiyse
                     if (response.success) {

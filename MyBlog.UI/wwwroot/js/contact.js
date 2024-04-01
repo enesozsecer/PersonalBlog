@@ -14,7 +14,7 @@ $("#ekle1").click(function (e) {
 
     $('#staticBackdropMessage1').modal("show");
 });
-function Update1(Id, Name, Mail,Subject,Message,Dates) {
+function Update17(Id, Name, Mail,Subject,Message,Dates) {
 
     $("#Id").val(Id);
     $("#Name").val(Name);

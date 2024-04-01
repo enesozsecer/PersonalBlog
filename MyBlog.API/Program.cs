@@ -62,6 +62,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<MyBlogContext>();
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IUserService, UserManager>();
+builder.Services.AddScoped<IWorkService, WorkManager>();
 builder.Services.AddScoped<IEducationService, EducationManager>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 builder.Services.AddScoped<IPortfolioService, PortfolioManager>();

@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using MyBlog.Business.Abstract;
 using MyBlog.DataAccess.Abstract.DataManagement;
-using MyBlog.Entity.DTO.PortfolioDTO;
+using MyBlog.Entity.DTO.EducationDTO;
+using MyBlog.Entity.DTO.WorkDTO;
 using MyBlog.Entity.Entity;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ using System.Threading.Tasks;
 
 namespace MyBlog.Business.Concrete
 {
-	public class PortfolioManager : GenericManager<PortfolioCrudDTO, PortfolioGetDTO, Portfolio>, IPortfolioService
-	{
-		public PortfolioManager(IMapper mapper, IUnitOfWork uow) : base(mapper, uow)
-		{
-		}
-	}
+    public class WorkManager : GenericManager<WorkCrudDTO, WorkGetDTO, Work>, IWorkService
+
+    {
+        public WorkManager(IMapper mapper, IUnitOfWork uow) : base(mapper, uow)
+        {
+        }
+    }
 }
