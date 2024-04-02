@@ -278,6 +278,7 @@ ul {
 }
 li {
 	display: list-item;
+	list-style:none;
 }
 ol, ul {
 	margin-left: 1.7rem;

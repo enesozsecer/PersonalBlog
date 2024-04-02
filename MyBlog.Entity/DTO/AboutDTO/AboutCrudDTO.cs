@@ -16,5 +16,7 @@ namespace MyBlog.Entity.DTO.AboutDTO
 		public string Mail { get; set; }
 		public string Resume { get; set; }
 		public string Photo { get; set; }
-	}
+        public string Intro { get; set; }
+
+    }
 }

@@ -18,5 +18,6 @@ namespace MyBlog.Entity.DTO.EducationDTO
         public string Section { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
+        public string Url { get; set; }
     }
 }

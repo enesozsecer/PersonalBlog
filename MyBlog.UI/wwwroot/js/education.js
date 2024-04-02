@@ -11,6 +11,7 @@ $("#ekle").click(function (e) {
     $("#Description").val("");
     $("#StartingDate").val("");
     $("#EndingDate").val("");
+    $("#UrlEducation").val("");
     
     var baslik = "Eğitim Bilgisi Ekle";
 
@@ -18,7 +19,7 @@ $("#ekle").click(function (e) {
 
     $('#staticBackdropUpdate').modal("show");
 });
-function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Description, StartingDate, EndingDate) {
+function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Description, StartingDate, EndingDate, Url) {
     $("#IdEducation").val(Id);
     var fullImagePath = '/images/' + Photo;
     $("#Photo21").attr("src", fullImagePath);
@@ -31,6 +32,7 @@ function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Descript
     $("#Description").val(Description);
     $("#StartingDate").val(StartingDate);
     $("#EndingDate").val(EndingDate);
+    $("#UrlEducation").val(Url);
     baslik = "Eğitim Bilgisi Güncelle";
     $("#staticBackdropLabel").text(baslik);
     $("#staticBackdropUpdate").modal("show");
@@ -69,6 +71,7 @@ $("#update").click(function (e) {
         formData.append("Description", $("#Description").val());
         formData.append("StartingDate", $("#StartingDate").val());
         formData.append("EndingDate", $("#EndingDate").val());
+        formData.append("Url", $("#UrlEducation").val());
         var file = $("#FormFile")[0].files[0];
         formData.append("FormFile", file);
 

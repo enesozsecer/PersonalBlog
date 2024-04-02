@@ -31,8 +31,8 @@ namespace MyBlog.UI.ViewComponents
                 var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
                 var value = JsonConvert.DeserializeObject<UIResponse<IEnumerable<EducationGetDTO>>>(jsonData);
                 var value2 = JsonConvert.DeserializeObject<UIResponse<IEnumerable<WorkGetDTO>>>(jsonData2);
-                value.Data= value.Data.OrderByDescending(item => item.EndingDate);
-                value2.Data= value2.Data.OrderByDescending(item => item.EndingDate);
+                value.Data = value.Data.OrderByDescending(item => item.EndingDate);
+                value2.Data = value2.Data.OrderByDescending(item => item.EndingDate);
 
                 EducationWorkModel model = new EducationWorkModel()
                 {

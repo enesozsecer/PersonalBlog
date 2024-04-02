@@ -22,12 +22,12 @@
                             <i class="fa fa-briefcase"></i>
                         </div>
                         <div class="timeline-header">
-                            <img width="130" height="130" src="/images/@item.Photo" />
-                            <h3>@item.Experience</h3>
+                            <li><a target="_blank" href="@item.Url"><i><img style="max-width: 130px;" src="~/images/@item.Photo" /></i></a></li>
+                            <h5>@item.Experience</h5>
                             <p>@item.StartingDate.ToString("MMMM-yyyy") - @item.EndingDate.ToString("MMMM-yyyy")</p>
                         </div>
                         <div class="timeline-content">
-                            <h4>@item.CompanyName</h4>
+                            <li><a target="_blank" href="@item.Url"><h4>@item.CompanyName</h4></a></li>
                             <h5>@item.Title</h5>
                             <p>@item.Description</p>
                         </div>
@@ -49,13 +49,14 @@
                             <i class="fa fa-graduation-cap"></i>
                         </div>
                         <div class="timeline-header">
-                            <img width="130" height="130" src="/images/@item.Photo" />
+                            <li><a target="_blank" href="@item.Url"><i><img style="max-width: 130px;" src="~/images/@item.Photo" /></i></a></li>
                             <h3>@item.Degree</h3>
                             <h5>@item.Score</h5>
                             <p>@item.StartingDate.ToString("MMMM-yyyy") - @item.EndingDate.ToString("MMMM-yyyy")</p>
                         </div>
                         <div class="timeline-content">
-                            <h4>@item.SchoolName</h4>
+                            <li><a target="_blank" href="@item.Url"><h4>@item.SchoolName</h4></a></li>
+                            @* <h4>@item.SchoolName</h4> *@
                             <h5>@item.Faculty</h5>
                             <h6>@item.Section</h6>
                             <p>@item.Description</p>

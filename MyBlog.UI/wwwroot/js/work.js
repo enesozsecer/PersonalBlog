@@ -9,6 +9,7 @@ $("#ekle").click(function (e) {
     $("#Description").val("");
     $("#StartingDate").val("");
     $("#EndingDate").val("");
+    $("#UrlWork").val("");
 
     var baslik = "İş Bilgisi Ekle";
 
@@ -16,7 +17,7 @@ $("#ekle").click(function (e) {
 
     $('#staticBackdropUpdate').modal("show");
 });
-function Update(Id, Photo, CompanyName, Title, Experience, Description, StartingDate, EndingDate) {
+function Update(Id, Photo, CompanyName, Title, Experience, Description, StartingDate, EndingDate, Url) {
     $("#IdWork").val(Id);
     var fullImagePath = '/images/' + Photo;
     $("#Photo11").attr("src", fullImagePath);
@@ -27,6 +28,7 @@ function Update(Id, Photo, CompanyName, Title, Experience, Description, Starting
     $("#Description").val(Description);
     $("#StartingDate").val(StartingDate);
     $("#EndingDate").val(EndingDate);
+    $("#UrlWork").val(Url);
     baslik = "Eğitim Bilgisi Güncelle";
     $("#staticBackdropLabel").text(baslik);
     $("#staticBackdropUpdate").modal("show");
@@ -63,6 +65,7 @@ $("#update").click(function (e) {
         formData.append("Description", $("#Description").val());
         formData.append("StartingDate", $("#StartingDate").val());
         formData.append("EndingDate", $("#EndingDate").val());
+        formData.append("Url", $("#UrlWork").val());
         var file = $("#FormFile")[0].files[0];
         formData.append("FormFile", file);
 

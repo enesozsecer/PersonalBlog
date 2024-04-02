@@ -18,7 +18,10 @@
 
         </div>
         <form>
-
+            <div class="form-floating mb-3">
+                <input name="Intro" type="text" class="form-control" id="Intro" placeholder="Ön Söz" value="@Model.Data.Intro" required>
+                <label for="floatingInput">Ön Söz</label>
+            </div>
             <div class="form-floating mb-3">
                 <input name="NameSurname" type="text" class="form-control" id="NameSurname" placeholder="Ad Soyad" value="@Model.Data.NameSurname" required>
                 <label for="floatingInput">Ad Soyad</label>
@@ -89,6 +92,7 @@
             var formData = new FormData();
 
             // Form alanlarını FormData'ya ekle
+            formData.append("Intro", $("#Intro").val());
             formData.append("NameSurname", $("#NameSurname").val());
             formData.append("BirthDate", $("#BirthDate").val());
             formData.append("Job", $("#Job").val());

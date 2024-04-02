@@ -5,12 +5,7 @@
 @{
     ViewData["Title"] = "Education";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    // Örnek bir DateTime nesnesi oluşturuluyor
-    
-    // // DateTime nesnesini bir tarih formatına çevirme
-    // string formattedDate = startingDate.ToString("yyyy-MM-dd");
-    // string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
-    // mode
+
 }
 
 <div class="bg-secondary rounded h-100 p-4">
@@ -40,6 +35,10 @@
                             <label for="formFileSm" class="form-label">Profil Resmi Seç</label>
                         </div>
                         <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Url" type="text" class="form-control" id="UrlEducation" placeholder="Url" required>
+                            <label for="floatingInput">Url</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
                             <input autocomplete="off" name="Degree" type="text" class="form-control" id="Degree" placeholder="Derece" required>
                             <label for="floatingInput">Derece</label>
                         </div>
@@ -51,7 +50,7 @@
                             <input autocomplete="off" name="Faculty" type="text" class="form-control" id="Faculty" placeholder="Fakülte" required>
                             <label for="floatingInput">Fakülte</label>
                         </div>
-                            <div class="form-floating mb-3 ">
+                        <div class="form-floating mb-3 ">
                             <input autocomplete="off" name="Section" type="text" class="form-control" id="Section" placeholder="Bölüm" required>
                             <label for="floatingInput">Bölüm</label>
                         </div>
@@ -59,10 +58,11 @@
                             <input autocomplete="off" name="Score" type="text" class="form-control" id="Score" placeholder="Puan" required>
                             <label for="floatingInput">Puan</label>
                         </div>
-                            <div class="form-floating mb-3 ">
+                        <div class="form-floating mb-3 ">
                             <input autocomplete="off" name="Description" type="text" class="form-control" id="Description" placeholder="Açıklama" required>
                             <label for="floatingInput">Açıklama</label>
                         </div>
+
                         <div class="form-floating mb-3 ">
                             <input autocomplete="off" type="date" name="StartingDate" type="text" class="form-control" id="StartingDate" placeholder="Başlangıç Tarihi" required>
                             <label for="floatingInput">Başlangıç Tarihi</label>
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    
+
     <table class="table">
         <thead>
             <tr>
@@ -104,13 +104,12 @@
                         DateTime startingDate = item.StartingDate;
                         DateTime endingDate = item.EndingDate;
 
-                        string formattedDate = startingDate.ToString("dd-MMMM-yyyy");
-                        string formattedDate2 = endingDate.ToString("dd-MMMM-yyyy");
+                        string formattedDate = startingDate.ToString("yyyy-MM-dd");
+                        string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
                     }
                     <td class="p-2">@formattedDate2</td>
-                    
                     <td class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.Degree','@item.SchoolName','@item.Faculty','@item.Section','@item.Score','@item.Description','@formattedDate','@formattedDate2')">Güncelle</button>
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.Degree','@item.SchoolName','@item.Faculty','@item.Section','@item.Score','@item.Description','@formattedDate','@formattedDate2','@item.Url')">Güncelle</button>
                         <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
                     </td>
                 </tr>

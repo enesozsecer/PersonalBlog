@@ -32,12 +32,15 @@
                         <div class="form-floating mb-3 d-flex justify-content-center">
                             <img style="height:150px; width:150px; border-radius:50%;" src="" id="Photo11" alt="Profil Resmi">
                             <input autocomplete="off" name="Image" type="text" class="form-control" id="PhotoWork" hidden="hidden">
-
                         </div>
                         <input autocomplete="off" name="Image" type="text" class="form-control" id="Image" hidden="hidden">
                         <div class="mb-3">
                             <input name="Photo" class="form-control bg-dark" id="FormFile" type="file" value="">
                             <label for="formFileSm" class="form-label">Profil Resmi Seç</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input autocomplete="off" name="Url" type="text" class="form-control" id="UrlWork" placeholder="Url" required>
+                            <label for="floatingInput">Url</label>
                         </div>
                         <div class="form-floating mb-3 ">
                             <input autocomplete="off" name="CompanyName" type="text" class="form-control" id="CompanyName" placeholder="İş Yeri Adı" required>
@@ -96,13 +99,13 @@
                         DateTime startingDate = item.StartingDate;
                         DateTime endingDate = item.EndingDate;
 
-                        string formattedDate = startingDate.ToString("dd-MMMM-yyyy");
-                        string formattedDate2 = endingDate.ToString("dd-MMMM-yyyy");
+                        string formattedDate = startingDate.ToString("yyyy-MM-dd");
+                        string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
                     }
                     <td class="p-2">@formattedDate2</td>
 
                     <td class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Experience','@item.Description','@formattedDate','@formattedDate2')">Güncelle</button>
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Experience','@item.Description','@formattedDate','@formattedDate2','@item.Url')">Güncelle</button>
                         <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
                     </td>
                 </tr>
