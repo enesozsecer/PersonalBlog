@@ -1,33 +1,31 @@
 ﻿
 var baslik = "";
 $("#ekle").click(function (e) {
-    $("#IdWork").val("");
-    $("#PhotoWork").val("");
-    $("#CompanyName").val("");
-    $("#Title").val("");
+    $("#IdCertificate").val("");
+    $("#PhotoCertificate").val("");
+    $("#CertificateName").val("");
+    $("#CertificateCode").val("");
+    $("#Corporation").val("");
+    $("#DateOfIssue").val("");
     $("#Description").val("");
-    $("#StartingDate").val("");
-    $("#EndingDate").val("");
-    $("#UrlWork").val("");
 
-    var baslik = "İş Bilgisi Ekle";
+    var baslik = "Sertifika Bilgisi Ekle";
 
     $("#staticBackdropLabel").text(baslik);
 
     $('#staticBackdropUpdate').modal("show");
 });
-function Update(Id, Photo, CompanyName, Title, Description, StartingDate, EndingDate, Url) {
-    $("#IdWork").val(Id);
+function Update(Id, Photo, CertificateName, CertificateCode, Corporation, DateOfIssue, Description) {
+    $("#IdCertificate").val(Id);
     var fullImagePath = '/images/' + Photo;
-    $("#Photo11").attr("src", fullImagePath);
-    $("#PhotoWork").val(Photo);
-    $("#CompanyName").val(CompanyName);
-    $("#Title").val(Title);
+    $("#Photo21").attr("src", fullImagePath);
+    $("#PhotoCertificate").val(Photo);
+    $("#CertificateName").val(CertificateName);
+    $("#CertificateCode").val(CertificateCode);
+    $("#Corporation").val(Corporation);
+    $("#DateOfIssue").val(DateOfIssue);
     $("#Description").val(Description);
-    $("#StartingDate").val(StartingDate);
-    $("#EndingDate").val(EndingDate);
-    $("#UrlWork").val(Url);
-    baslik = "Eğitim Bilgisi Güncelle";
+    baslik = "Sertifika Bilgisi Güncelle";
     $("#staticBackdropLabel").text(baslik);
     $("#staticBackdropUpdate").modal("show");
 }
@@ -55,20 +53,19 @@ $("#update").click(function (e) {
         var formData = new FormData();
 
         // Form alanlarını FormData'ya ekle
-        formData.append("Id", $("#IdWork").val());
-        formData.append("Photo", $("#PhotoWork").val());
-        formData.append("CompanyName", $("#CompanyName").val());
-        formData.append("Title", $("#Title").val());
+        formData.append("Id", $("#IdCertificate").val());
+        formData.append("Photo", $("#PhotoCertificate").val());
+        formData.append("CertificateName", $("#CertificateName").val());
+        formData.append("CertificateCode", $("#CertificateCode").val());
+        formData.append("Corporation", $("#Corporation").val());
+        formData.append("DateOfIssue", $("#DateOfIssue").val());
         formData.append("Description", $("#Description").val());
-        formData.append("StartingDate", $("#StartingDate").val());
-        formData.append("EndingDate", $("#EndingDate").val());
-        formData.append("Url", $("#UrlWork").val());
         var file = $("#FormFile")[0].files[0];
         formData.append("FormFile", file);
 
         $.ajax({
             type: "POST",
-            url: "/CrudWork",
+            url: "/CrudCertificate",
             data: formData,
             processData: false,  // processData ve contentType false olmalı
             contentType: false,
@@ -113,7 +110,7 @@ function confirmDelete(id) {
             $.ajax({
                 type: "POST",
                 data: { id: id },
-                url: "/DeleteWork",
+                url: "/DeleteCertificate",
                 success: function (response) {
                     // Başarılı bir şekilde silindiyse
                     if (response.success) {

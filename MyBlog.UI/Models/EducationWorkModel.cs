@@ -9,6 +9,5 @@ namespace MyBlog.UI.Models
     {
         public UIResponse<IEnumerable<EducationGetDTO>> Education { get; set; }
         public UIResponse<IEnumerable<WorkGetDTO>> Work { get; set; }
-        //public UIResponse<IEnumerable<WorkGetDTO>> Skills { get; set; }
     }
 }

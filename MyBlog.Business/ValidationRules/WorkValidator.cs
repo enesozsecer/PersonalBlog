@@ -18,7 +18,6 @@ namespace MyBlog.Business.ValidationRules
             RuleFor(x => x.EndingDate).NotEmpty().WithMessage("Bitiş tarihi boş olamaz.");
             RuleFor(x => x.CompanyName).NotEmpty().WithMessage("Şirket boş olamaz.");
             RuleFor(x => x.Title).NotEmpty().WithMessage("Ünvan boş olamaz.");
-            RuleFor(x => x.Experience).NotEmpty().WithMessage("Deneyim boş olamaz.");
             RuleFor(x => x.Description).NotEmpty().WithMessage("Açıklama boş olamaz.");
         }
     }

@@ -2,13 +2,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Entity.DTO.AboutDTO;
 using MyBlog.Entity.DTO.UserDTO;
-using MyBlog.Entity.Entity;
 using MyBlog.Entity.Result;
 using Newtonsoft.Json;
-using System;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Security.Policy;
 using System.Text;
 
 namespace MyBlog.UI.Controllers

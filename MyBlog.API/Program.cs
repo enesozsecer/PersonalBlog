@@ -66,6 +66,7 @@ builder.Services.AddScoped<IWorkService, WorkManager>();
 builder.Services.AddScoped<IEducationService, EducationManager>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 builder.Services.AddScoped<IPortfolioService, PortfolioManager>();
+builder.Services.AddScoped<ICertificateService, CertificateManager>();
 builder.Services.AddScoped<ISkillsService, SkillsManager>();
 builder.Services.AddScoped<ISocialService, SocialManager>();
 builder.Services.AddFluentValidationAutoValidation();

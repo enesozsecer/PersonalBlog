@@ -17,6 +17,13 @@ namespace MyBlog.Entity.DTO.AboutDTO
 		public string Resume { get; set; }
 		public string Photo { get; set; }
         public string Intro { get; set; }
-
+        public string PhoneNumber { get; set; }
+        public string MilitarySituation { get; set; }
+        public string Gender { get; set; }
+        public string Nationality { get; set; }
+        public string Address { get; set; }
+        public string DriverLicence { get; set; }
+        public string Travelability { get; set; }
+        public string MaritalStatus { get; set; }
     }
 }

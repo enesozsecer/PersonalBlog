@@ -51,10 +51,6 @@
                             <label for="floatingInput">Ünvan</label>
                         </div>
                         <div class="form-floating mb-3 ">
-                            <input autocomplete="off" name="Experience" type="text" class="form-control" id="Experience" placeholder="Tecrübe" required>
-                            <label for="floatingInput">Tecrübe</label>
-                        </div>
-                        <div class="form-floating mb-3 ">
                             <input autocomplete="off" name="Description" type="text" class="form-control" id="Description" placeholder="Açıklama" required>
                             <label for="floatingInput">Açıklama</label>
                         </div>
@@ -62,9 +58,15 @@
                             <input autocomplete="off" type="date" name="StartingDate" type="text" class="form-control" id="StartingDate" placeholder="Başlangıç Tarihi" required>
                             <label for="floatingInput">Başlangıç Tarihi</label>
                         </div>
-                        <div class="form-floating mb-3 ">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="currently">
+                            <label class="form-check-label" for="currently">
+                                Halen çalışıyorum.
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
                             <input autocomplete="off" type="date" name="EndingDate" type="text" class="form-control" id="EndingDate" placeholder="Bitiş Tarihi" required>
-                            <label for="floatingInput">Bitiş Tarihi</label>
+                            <label for="floatingInput" id="EndingDateLabel">Bitiş Tarihi</label>
                         </div>
                     </div>
                     <div class="modal-footer bg-secondary">
@@ -79,7 +81,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th class=" col-md-3"></th>
                 <th class="col-md-3 p-3">İş Yeri Adı</th>
                 <th class="col-md-3 p-3">Ünvan</th>
                 <th class="col-md-3 p-3">Bitiş Tarihi</th>
@@ -98,14 +99,12 @@
                     @{
                         DateTime startingDate = item.StartingDate;
                         DateTime endingDate = item.EndingDate;
-
                         string formattedDate = startingDate.ToString("yyyy-MM-dd");
                         string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
                     }
                     <td class="p-2">@formattedDate2</td>
-
                     <td class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Experience','@item.Description','@formattedDate','@formattedDate2','@item.Url')">Güncelle</button>
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Description','@formattedDate','@formattedDate2','@item.Url')">Güncelle</button>
                         <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
                     </td>
                 </tr>
@@ -114,5 +113,51 @@
     </table>
 
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var currentlyCheckbox = document.getElementById('currently');
+        var endingDateInput = document.getElementById('EndingDate');
+        var endingDateLabel = document.getElementById('EndingDateLabel');
 
+        // Fonksiyon: bugünün tarihini alma
+        function getTodayDate() {
+            var today = new Date();
+            var day = String(today.getDate()).padStart(2, '0');
+            var month = String(today.getMonth() + 1).padStart(2, '0'); // Ocak 0'dan başlar
+            var year = today.getFullYear();
+            return year + '-' + month + '-' + day;
+        }
+
+        // Fonksiyon: içinde bulunduğumuz ayın bir ay sonrasının ilk gününü alma
+        function getNextMonthFirstDay() {
+            var today = new Date();
+            var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Bir ay sonrasının ilk günü
+            var day = String(nextMonth.getDate()).padStart(2, '0');
+            var month = String(nextMonth.getMonth() + 1).padStart(2, '0');
+            var year = nextMonth.getFullYear();
+            return year + '-' + month + '-' + day;
+        }
+
+        // Checkbox durumu değiştiğinde kontrol et
+        currentlyCheckbox.addEventListener('change', function () {
+            if (currentlyCheckbox.checked) {
+                // Checkbox işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
+                endingDateInput.style.display = 'none';
+                endingDateLabel.style.display = 'none';
+                endingDateInput.value = getNextMonthFirstDay();
+            } else {
+                // Checkbox işaretli değilse, Bitiş Tarihi inputunu göster
+                endingDateInput.style.display = 'block';
+                endingDateInput.value = ''; // Eğer gerekirse, eğer önceden atandıysa bu satırı kaldırabilirsiniz.
+            }
+        });
+
+        // Sayfa yüklendiğinde durumu kontrol et
+        if (currentlyCheckbox.checked) {
+            // Eğer checkbox başlangıçta işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
+            endingDateInput.style.display = 'none';
+            endingDateInput.value = getNextMonthFirstDay();
+        }
+    });
+</script>
 <script src="~/js/Work.js" asp-append-version="true"></script>

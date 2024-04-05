@@ -11,7 +11,6 @@ namespace MyBlog.Entity.Entity
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
         public string CompanyName { get; set; }
-        public string Experience { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }

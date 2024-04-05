@@ -56,6 +56,7 @@
                     <a href="/Admin/Work" class="nav-item nav-link"><i class="fa fa-user me-2"></i>İş</a>
                     <a href="/Admin/Education" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Eğitim</a>
                     <a href="/Admin/Portfolio" class="nav-item nav-link"><i class="fa fa-briefcase me-2"></i>Portföy</a>
+                    <a href="/Admin/Certificate" class="nav-item nav-link"><i class="fa fa-briefcase me-2"></i>Sertifika</a>
                     <a href="/Admin/Skills" class="nav-item nav-link"><i class="fa fa-star me-2"></i>Yetenekler</a>
                     <a href="/Admin/Social" class="nav-item nav-link"><i class="fa fa-camera-retro me-2"></i>Sosyal Medya</a>
 
@@ -258,7 +259,7 @@
                     contentType: false,
                     success: function (response) {
                         if (response.success) {
-                            location.reload();
+                            window.location.href = '/login';
                         } else {
                             Swal.fire({
                                 title: "Hata!",

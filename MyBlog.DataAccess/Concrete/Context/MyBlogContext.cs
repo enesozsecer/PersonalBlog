@@ -20,6 +20,7 @@ namespace MyBlog.DataAccess.Concrete.Context
 		public virtual DbSet<Work> Work { get; set; }
 		public virtual DbSet<Education> Education { get; set; }
 		public virtual DbSet<Portfolio> Portfolio { get; set; }
+		public virtual DbSet<Certificate> Certificate { get; set; }
 		public virtual DbSet<Skills> Skills { get; set; }
 		public virtual DbSet<Social> Social { get; set; }
 		public virtual DbSet<User> User { get; set; }
