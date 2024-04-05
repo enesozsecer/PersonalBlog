@@ -59,8 +59,8 @@
                             <label for="floatingInput">Başlangıç Tarihi</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="currently">
-                            <label class="form-check-label" for="currently">
+                            <input class="form-check-input" type="checkbox" value="" id="CurrentlyJob">
+                            <label class="form-check-label" for="CurrentlyJob">
                                 Halen çalışıyorum.
                             </label>
                         </div>
@@ -104,7 +104,7 @@
                     }
                     <td class="p-2">@formattedDate2</td>
                     <td class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Description','@formattedDate','@formattedDate2','@item.Url')">Güncelle</button>
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Description','@formattedDate','@formattedDate2','@item.Url','@item.CurrentlyJob')">Güncelle</button>
                         <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
                     </td>
                 </tr>
@@ -115,9 +115,10 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var currentlyCheckbox = document.getElementById('currently');
+        var currentlyCheckbox = document.getElementById('CurrentlyJob');
         var endingDateInput = document.getElementById('EndingDate');
         var endingDateLabel = document.getElementById('EndingDateLabel');
+
 
         // Fonksiyon: bugünün tarihini alma
         function getTodayDate() {
@@ -145,10 +146,14 @@
                 endingDateInput.style.display = 'none';
                 endingDateLabel.style.display = 'none';
                 endingDateInput.value = getNextMonthFirstDay();
+                currentlyCheckbox.value = true
+
             } else {
                 // Checkbox işaretli değilse, Bitiş Tarihi inputunu göster
                 endingDateInput.style.display = 'block';
                 endingDateInput.value = ''; // Eğer gerekirse, eğer önceden atandıysa bu satırı kaldırabilirsiniz.
+                currentlyCheckbox.value = false
+
             }
         });
 
