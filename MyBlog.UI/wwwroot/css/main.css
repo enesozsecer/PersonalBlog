@@ -47,7 +47,20 @@
  * ------------------------------------------------------------------- 
  */
 
+/*My Css Start*/
+.row:before, .row:after {
+	content: "";
+	display: table;
+}
 
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+.contact-field input{
+	width:100%;
+}
+/*My Css End*/
 html {
 	font-size: 10px;
 	font-family: 'Times New Roman', Times, serif !important;
@@ -532,7 +545,7 @@ select {
 	line-height: 3rem;
 	max-width: 100%;
 	background: transparent;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid #989797;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;

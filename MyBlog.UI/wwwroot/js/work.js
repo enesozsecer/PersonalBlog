@@ -28,10 +28,57 @@ function Update(Id, Photo, CompanyName, Title, Description, StartingDate, Ending
     $("#StartingDate").val(StartingDate);
     $("#EndingDate").val(EndingDate);
     $("#UrlWork").val(Url);
-    $("#CurrentlyJob").val(CurrentlyJob);
+    $("#CurrentlyJob").prop("checked", CurrentlyJob === true || CurrentlyJob === 'True').each(initializeCheckbox);
     baslik = "Eğitim Bilgisi Güncelle";
     $("#staticBackdropLabel").text(baslik);
     $("#staticBackdropUpdate").modal("show");
+}
+function initializeCheckbox() {
+    var currentlyCheckbox = document.getElementById('CurrentlyJob');
+    var endingDateInput = document.getElementById('EndingDate');
+    var endingDateLabel = document.getElementById('EndingDateLabel');
+
+    // Checkbox durumu değiştiğinde kontrol et
+    currentlyCheckbox.addEventListener('change', function () {
+        if (currentlyCheckbox.checked) {
+            // Checkbox işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
+            endingDateInput.style.display = 'none';
+            endingDateLabel.style.display = 'none';
+            endingDateInput.value = getNextMonthFirstDay();
+            currentlyCheckbox.value = true;
+        } else {
+            // Checkbox işaretli değilse, Bitiş Tarihi inputunu göster
+            endingDateInput.style.display = 'block';
+            endingDateLabel.style.display = 'block';
+            currentlyCheckbox.value = false;
+        }
+    });
+
+    // Sayfa yüklendiğinde durumu kontrol et ve varsayılan olarak currentlyCheckbox.value'yi false olarak ayarla
+    if (currentlyCheckbox.checked) {
+        // Eğer checkbox başlangıçta işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
+        endingDateInput.style.display = 'none';
+        endingDateLabel.style.display = 'none';
+        endingDateInput.value = getNextMonthFirstDay();
+        currentlyCheckbox.value = true;
+    }
+    else {
+        endingDateInput.style.display = 'block';
+        endingDateLabel.style.display = 'block';
+    }
+};
+
+// initializeCheckbox fonksiyonunu çağırarak işlemi gerçekleştir
+initializeCheckbox();
+
+
+function getNextMonthFirstDay() {
+    var today = new Date();
+    var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Bir ay sonrasının ilk günü
+    var day = String(nextMonth.getDate()).padStart(2, '0');
+    var month = String(nextMonth.getMonth() + 1).padStart(2, '0');
+    var year = nextMonth.getFullYear();
+    return year + '-' + month + '-' + day;
 }
 $("#update").click(function (e) {
     e.preventDefault(); // Form submitini engelle

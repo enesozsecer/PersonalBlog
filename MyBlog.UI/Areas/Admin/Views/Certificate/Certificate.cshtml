@@ -12,39 +12,6 @@
     <h6 class="mb-4">Sertifikalarım</h6>
     <button type="button" class="btn btn-outline-success m-2 float-end" id="ekle" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ekle</button>
     <!-- Button trigger modal -->
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="col-md-3 p-3">Döküman</th>
-                <th class="col-md-3 p-3">Sertifika Adı</th>
-                <th class="col-md-3 p-3">Kurum Adı</th>
-                <th class="col-md-3 p-3">Sertifika Tarih</th>
-                <th class="col-md-4"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Update Modal-->
-            @foreach (var item in Model.Data)
-            {
-                <tr id="@item.Id">
-                    <td><img width="30" height="30" src="/images/@item.Photo" /></td>
-                    <td>@item.CertificateName</td>
-                    <td>@item.Corporation</td>
-                    @{
-                        DateTime dateOfIssue = item.DateOfIssue;
-
-                        string formattedDate = dateOfIssue.ToString("yyyy-MM-dd");
-                    }
-                    <td>@formattedDate</td>
-                    <td class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CertificateName','@item.CertificateCode','@item.Corporation','@item.DateOfIssue','@item.Description')">Güncelle</button>
-                        <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
     <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
@@ -84,14 +51,48 @@
                             <input autocomplete="off" name="Corporation" type="text" class="form-control" id="Corporation" placeholder="Kurum Adı" required>
                             <label for="floatingInput">Kurum Adı</label>
                         </div>
-                    <div class="modal-footer bg-secondary">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">İptal</button>
-                        <button type="submit" id="update" class="btn btn-outline-success">Kaydet</button>
+                        <div class="modal-footer bg-secondary">
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">İptal</button>
+                            <button type="submit" id="update" class="btn btn-outline-success">Kaydet</button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-3 p-3">Döküman</th>
+                <th class="col-md-3 p-3">Sertifika Adı</th>
+                <th class="col-md-3 p-3">Kurum Adı</th>
+                <th class="col-md-3 p-3">Sertifika Tarih</th>
+                <th class="col-md-4"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Update Modal-->
+            @foreach (var item in Model.Data)
+            {
+                <tr id="@item.Id">
+                    <td><img width="30" height="30" src="/images/@item.Photo" /></td>
+                    <td>@item.CertificateName</td>
+                    <td>@item.Corporation</td>
+                    @{
+                        DateTime dateOfIssue = item.DateOfIssue;
+
+                        string formattedDate = dateOfIssue.ToString("yyyy-MM-dd");
+                    }
+                    <td>@formattedDate</td>
+                    <td class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CertificateName','@item.CertificateCode','@item.Corporation','@formattedDate','@item.Description')">Güncelle</button>
+                        <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 <script src="~/js/Certificate.js" asp-append-version="true"></script>

@@ -1,5 +1,6 @@
 ﻿<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<section id="contact">
+<section id="services">
+	<div class="overlay"></div>
 
 	<div class="row section-intro">
 		<div class="col-twelve">
@@ -14,13 +15,13 @@
 		</div>
 	</div> <!-- /section-intro -->
 
-	<div class="row contact-form">
+	<div class="row contact-form" style="position:relative;">
 
-		<div class="col-twelve">
+		<div class="col-twelve" style="display:flex;justify-content:center;">
 
 			<!-- form -->
 			<form id="form" >
-				<fieldset>
+				<fieldset class="contact-field">
 
 					<div class="form-field">
 						<input name="contactName" type="text" id="Name" placeholder="Ad Soyad" value="" minlength="2" required>
@@ -34,7 +35,7 @@
 					<div class="form-field">
 						<textarea name="contactMessage" id="Message" placeholder="Mesaj" rows="10" cols="50" required></textarea>
 					</div>
-					<div class="form-field">
+					<div class="form-field" style="margin-top:2rem;">
 						<button id="update1" class="submitform">Gönder</button>
 						<div id="submit-loader">
 							<div class="text-loader">Gönderiliyor...</div>

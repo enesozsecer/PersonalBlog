@@ -24,7 +24,14 @@
                         </div>
                         <div class="timeline-header">
                             <li><a target="_blank" href="@item.Url"><i><img style="max-width: 130px;" src="~/images/@item.Photo"/></i></a></li>
-                            <p>@item.StartingDate.ToString("MMMM-yyyy") - @item.EndingDate.ToString("MMMM-yyyy")</p>
+                            @if (item.CurrentlyJob == true)
+                            {
+                                <p>@item.StartingDate.ToString("MMMM-yyyy") - Halen</p>
+                            }
+                            else
+                            {
+                                <p>@item.StartingDate.ToString("MMMM-yyyy") - @item.EndingDate.ToString("MMMM-yyyy")</p>
+                            }
                             @if (years.ToString() == "0")
                             {
                                 <p><span style="font-weight:bold; color:black">Tecrübe:</span> @months.ToString() ay</p>
@@ -63,8 +70,15 @@
                         <div class="timeline-header">
                             <li><a target="_blank" href="@item.Url"><i><img style="max-width: 130px;" src="~/images/@item.Photo" /></i></a></li>
                             <h3>@item.Degree</h3>
-                            <h5>@item.Score</h5>
-                            <p>@item.StartingDate.ToString("MMMM-yyyy") - @item.EndingDate.ToString("MMMM-yyyy")</p>
+                            <h5>Puan: @item.Score</h5>
+                            @if (item.CurrentlyEducation==true)
+                            {
+                                <p>@item.StartingDate.ToString("MMMM-yyyy") - Halen</p>
+                            }
+                            else
+                            {
+                                <p>@item.StartingDate.ToString("MMMM-yyyy") - @item.EndingDate.ToString("MMMM-yyyy")</p>
+                            }
                         </div>
                         <div class="timeline-content">
                             <li><a target="_blank" href="@item.Url"><h4>@item.SchoolName</h4></a></li>

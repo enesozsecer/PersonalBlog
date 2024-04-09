@@ -11,6 +11,7 @@ $("#ekle").click(function (e) {
     $("#Description").val("");
     $("#StartingDate").val("");
     $("#EndingDate").val("");
+    $("#CurrentlyEducation").val("");
     $("#UrlEducation").val("");
     
     var baslik = "Eğitim Bilgisi Ekle";
@@ -19,7 +20,7 @@ $("#ekle").click(function (e) {
 
     $('#staticBackdropUpdate').modal("show");
 });
-function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Description, StartingDate, EndingDate, Url) {
+function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Description, StartingDate, EndingDate, Url, CurrentlyEducation) {
     $("#IdEducation").val(Id);
     var fullImagePath = '/images/' + Photo;
     $("#Photo21").attr("src", fullImagePath);
@@ -32,10 +33,59 @@ function Update(Id, Photo, Degree, SchoolName, Faculty, Section, Score, Descript
     $("#Description").val(Description);
     $("#StartingDate").val(StartingDate);
     $("#EndingDate").val(EndingDate);
+    $("#CurrentlyEducation").prop("checked", CurrentlyEducation === true || CurrentlyEducation === 'True').each(initializeCheckbox);
     $("#UrlEducation").val(Url);
     baslik = "Eğitim Bilgisi Güncelle";
     $("#staticBackdropLabel").text(baslik);
     $("#staticBackdropUpdate").modal("show");
+}
+
+function initializeCheckbox() {
+    var currentlyCheckbox = document.getElementById('CurrentlyEducation');
+    var endingDateInput = document.getElementById('EndingDate');
+    var endingDateLabel = document.getElementById('EndingDateLabel');
+
+    // Checkbox durumu değiştiğinde kontrol et
+    currentlyCheckbox.addEventListener('change', function () {
+        if (currentlyCheckbox.checked) {
+            // Checkbox işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
+            endingDateInput.style.display = 'none';
+            endingDateLabel.style.display = 'none';
+            endingDateInput.value = getNextMonthFirstDay();
+            currentlyCheckbox.value = true;
+        } else {
+            // Checkbox işaretli değilse, Bitiş Tarihi inputunu göster
+            endingDateInput.style.display = 'block';
+            endingDateLabel.style.display = 'block';
+            currentlyCheckbox.value = false;
+        }
+    });
+
+    // Sayfa yüklendiğinde durumu kontrol et ve varsayılan olarak currentlyCheckbox.value'yi false olarak ayarla
+    if (currentlyCheckbox.checked) {
+        // Eğer checkbox başlangıçta işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
+        endingDateInput.style.display = 'none';
+        endingDateLabel.style.display = 'none';
+        endingDateInput.value = getNextMonthFirstDay();
+        currentlyCheckbox.value = true;
+    }
+    else {
+        endingDateInput.style.display = 'block';
+        endingDateLabel.style.display = 'block';
+    }
+};
+
+// initializeCheckbox fonksiyonunu çağırarak işlemi gerçekleştir
+initializeCheckbox();
+
+
+function getNextMonthFirstDay() {
+    var today = new Date();
+    var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Bir ay sonrasının ilk günü
+    var day = String(nextMonth.getDate()).padStart(2, '0');
+    var month = String(nextMonth.getMonth() + 1).padStart(2, '0');
+    var year = nextMonth.getFullYear();
+    return year + '-' + month + '-' + day;
 }
 $("#update").click(function (e) {
     e.preventDefault(); // Form submitini engelle
@@ -71,6 +121,7 @@ $("#update").click(function (e) {
         formData.append("Description", $("#Description").val());
         formData.append("StartingDate", $("#StartingDate").val());
         formData.append("EndingDate", $("#EndingDate").val());
+        formData.append("CurrentlyEducation", $("#CurrentlyEducation").val());
         formData.append("Url", $("#UrlEducation").val());
         var file = $("#FormFile")[0].files[0];
         formData.append("FormFile", file);

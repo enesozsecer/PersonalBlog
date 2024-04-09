@@ -13,5 +13,6 @@ namespace MyBlog.Business.Concrete
 		public AboutManager(IMapper mapper, IUnitOfWork uow) : base(mapper, uow)
 		{
 		}
+
 	}
 }

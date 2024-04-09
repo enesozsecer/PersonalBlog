@@ -18,5 +18,7 @@ namespace MyBlog.Entity.Entity
         public string Description { get; set; }
         public string Photo { get; set; }
         public string Url { get; set; }
+        public bool CurrentlyEducation { get; set; }
+
     }
 }

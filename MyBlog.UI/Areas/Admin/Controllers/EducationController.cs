@@ -38,6 +38,14 @@ namespace MyBlog.UI.Areas.Admin.Controllers
                 {
                     await FormFile.CopyToAsync(stream);
                 }
+                if (p.Id != 0)
+                {
+                    var oldImagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", p.Photo);
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
                 p.Photo = uniqueFileName;
                 var data = await CrudAsync(p, url + "Education/AddOrUpdate");
 

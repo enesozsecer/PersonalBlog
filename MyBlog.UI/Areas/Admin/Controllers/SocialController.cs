@@ -38,6 +38,14 @@ namespace MyBlog.UI.Areas.Admin.Controllers
                 {
                     await ImageFile.CopyToAsync(stream);
                 }
+                if (p.Id != 0)
+                {
+                    var oldImagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", p.Image);
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
                 p.Image = uniqueFileName;
                 var data = await CrudAsync(p, url + "Social/AddOrUpdate");
 

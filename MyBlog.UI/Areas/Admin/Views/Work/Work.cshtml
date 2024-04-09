@@ -5,19 +5,12 @@
 @{
     ViewData["Title"] = "Work";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    // Örnek bir DateTime nesnesi oluşturuluyor
-
-    // // DateTime nesnesini bir tarih formatına çevirme
-    // string formattedDate = startingDate.ToString("yyyy-MM-dd");
-    // string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
-    // mode
 }
 
 <div class="bg-secondary rounded h-100 p-4">
-    <h6 class="mb-4">Eğitimlerim</h6>
+    <h6 class="mb-4">Çalışmalarım</h6>
     <button type="button" class="btn btn-outline-success m-2 float-end" id="ekle" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ekle</button>
     <!-- Button trigger modal -->
-
     <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
@@ -81,6 +74,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th class="col-md-3 p-3">Logo</th>
                 <th class="col-md-3 p-3">İş Yeri Adı</th>
                 <th class="col-md-3 p-3">Ünvan</th>
                 <th class="col-md-3 p-3">Bitiş Tarihi</th>
@@ -93,16 +87,16 @@
             @foreach (var item in Model.Data)
             {
                 <tr>
-                    <td class="p-2"><img width="30" height="30" src="/images/@item.Photo" /></td>
-                    <td class="p-2">@item.CompanyName</td>
-                    <td class="p-2">@item.Title</td>
+                    <td ><img width="30" height="30" src="/images/@item.Photo" /></td>
+                    <td >@item.CompanyName</td>
+                    <td >@item.Title</td>
                     @{
                         DateTime startingDate = item.StartingDate;
                         DateTime endingDate = item.EndingDate;
                         string formattedDate = startingDate.ToString("yyyy-MM-dd");
                         string formattedDate2 = endingDate.ToString("yyyy-MM-dd");
                     }
-                    <td class="p-2">@formattedDate2</td>
+                    <td >@formattedDate2</td>
                     <td class="d-flex justify-content-end">
                         <button type="button" class="btn btn-outline-info m-2" data-bs-toggle="modal" id="guncelle" onclick="Update('@item.Id','@item.Photo','@item.CompanyName','@item.Title','@item.Description','@formattedDate','@formattedDate2','@item.Url','@item.CurrentlyJob')">Güncelle</button>
                         <button type="button" id="delete" onclick="confirmDelete(@item.Id)" class="btn btn-outline-danger m-2">Sil</button>
@@ -113,56 +107,5 @@
     </table>
 
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var currentlyCheckbox = document.getElementById('CurrentlyJob');
-        var endingDateInput = document.getElementById('EndingDate');
-        var endingDateLabel = document.getElementById('EndingDateLabel');
 
-
-        // Fonksiyon: bugünün tarihini alma
-        function getTodayDate() {
-            var today = new Date();
-            var day = String(today.getDate()).padStart(2, '0');
-            var month = String(today.getMonth() + 1).padStart(2, '0'); // Ocak 0'dan başlar
-            var year = today.getFullYear();
-            return year + '-' + month + '-' + day;
-        }
-
-        // Fonksiyon: içinde bulunduğumuz ayın bir ay sonrasının ilk gününü alma
-        function getNextMonthFirstDay() {
-            var today = new Date();
-            var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Bir ay sonrasının ilk günü
-            var day = String(nextMonth.getDate()).padStart(2, '0');
-            var month = String(nextMonth.getMonth() + 1).padStart(2, '0');
-            var year = nextMonth.getFullYear();
-            return year + '-' + month + '-' + day;
-        }
-
-        // Checkbox durumu değiştiğinde kontrol et
-        currentlyCheckbox.addEventListener('change', function () {
-            if (currentlyCheckbox.checked) {
-                // Checkbox işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
-                endingDateInput.style.display = 'none';
-                endingDateLabel.style.display = 'none';
-                endingDateInput.value = getNextMonthFirstDay();
-                currentlyCheckbox.value = true
-
-            } else {
-                // Checkbox işaretli değilse, Bitiş Tarihi inputunu göster
-                endingDateInput.style.display = 'block';
-                endingDateInput.value = ''; // Eğer gerekirse, eğer önceden atandıysa bu satırı kaldırabilirsiniz.
-                currentlyCheckbox.value = false
-
-            }
-        });
-
-        // Sayfa yüklendiğinde durumu kontrol et
-        if (currentlyCheckbox.checked) {
-            // Eğer checkbox başlangıçta işaretliyse, Bitiş Tarihi inputunu gizle ve bir ay sonrasının ilk gününü ata
-            endingDateInput.style.display = 'none';
-            endingDateInput.value = getNextMonthFirstDay();
-        }
-    });
-</script>
 <script src="~/js/Work.js" asp-append-version="true"></script>
