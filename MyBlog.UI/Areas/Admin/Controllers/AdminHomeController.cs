@@ -27,11 +27,6 @@ namespace MyBlog.UI.Areas.Admin.Controllers
             _httpClient = httpClient;
 
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpPost("/LogInfo")]
         public async Task<IActionResult> LogInfo(LoginCrudDTO p)
         {
