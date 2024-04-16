@@ -72,9 +72,31 @@
                 <input name="Address" type="text" class="form-control" id="Address" placeholder="Adres" value="@Model.Data.Address" required>
                 <label for="floatingInput">Adres</label>
             </div>            
-            <div class="form-floating mb-3">
+@*             <div class="form-floating mb-3">
                 <input name="DriverLicence" type="text" class="form-control" id="DriverLicence" placeholder="Sürücü Belgesi" value="@Model.Data.DriverLicence" required>
                 <label for="floatingInput">Sürücü Belgesi</label>
+            </div> *@
+            <div class="form-floating mb-3">
+                <select name="DriverLicence" class="form-select" id="DriverLicence" required>
+                    <option value="A" @(Model.Data.DriverLicence == "A" ? "selected" : "")>A</option>
+                    <option value="A1" @(Model.Data.DriverLicence == "A1" ? "selected" : "")>A1</option>
+                    <option value="A2" @(Model.Data.DriverLicence == "A2" ? "selected" : "")>A2</option>
+                    <option value="M" @(Model.Data.DriverLicence == "M" ? "selected" : "")>M</option>
+                    <option value="B" @(Model.Data.DriverLicence == "B" ? "selected" : "")>B</option>
+                    <option value="B1" @(Model.Data.DriverLicence == "B1" ? "selected" : "")>B1</option>
+                    <option value="BE" @(Model.Data.DriverLicence == "BE" ? "selected" : "")>BE</option>
+                    <option value="C" @(Model.Data.DriverLicence == "C" ? "selected" : "")>C</option>
+                    <option value="C1" @(Model.Data.DriverLicence == "C1" ? "selected" : "")>C1</option>
+                    <option value="CE" @(Model.Data.DriverLicence == "CE" ? "selected" : "")>CE</option>
+                    <option value="C1E" @(Model.Data.DriverLicence == "C1E" ? "selected" : "")>C1E</option>
+                    <option value="D" @(Model.Data.DriverLicence == "D" ? "selected" : "")>D</option>
+                    <option value="D1" @(Model.Data.DriverLicence == "D1" ? "selected" : "")>D1</option>
+                    <option value="DE" @(Model.Data.DriverLicence == "DE" ? "selected" : "")>DE</option>
+                    <option value="D1E" @(Model.Data.DriverLicence == "D1E" ? "selected" : "")>D1E</option>
+                    <option value="G" @(Model.Data.DriverLicence == "G" ? "selected" : "")>G</option>
+                    <option value="F" @(Model.Data.DriverLicence == "F" ? "selected" : "")>F</option>
+                </select>
+                <label for="DriverLicence">Sürücü Belgesi</label>
             </div>
             <div class="form-floating mb-3">
                 <select name="Travelability" class="form-select" id="Travelability" onchange="checkTravelability()" required>

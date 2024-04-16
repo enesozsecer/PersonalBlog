@@ -26,6 +26,6 @@ namespace MyBlog.DataAccess.Concrete.Context
 		public virtual DbSet<User> User { get; set; }
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-		=> optionsBuilder.UseSqlServer("Data Source=DESKTOP-R04PVQ3\\SQLEXPRESS; Initial Catalog=MyBlogDB; Integrated Security=true; TrustServerCertificate=True");
+		=> optionsBuilder.UseSqlServer("Data Source=DESKTOP-R04PVQ3\\SQLEXPRESS; Initial Catalog=PersonalBlogDb; Integrated Security=true; TrustServerCertificate=True");
 	}
 }
